@@ -19,6 +19,13 @@ $(document).ready(function() {
     equal(_.values({one: 1, two: 2, length: 3}).join(', '), '1, 2, 3', '... even when one of them is "length"');
   });
 
+  test("valuesAt", function() {
+    var obj = {one: 1, two: 2, three: 3, four: 4};
+    equal(_.valuesAt(obj, "one", "two", "three").join(", "), "1, 2, 3", 'will extract only specified values from an object');
+    delete obj.two;
+    equal(_.valuesAt(obj, "one", "two", "three")[1], null, "will use null for missing values");
+  });
+
   test("pairs", function() {
     deepEqual(_.pairs({one: 1, two: 2}), [['one', 1], ['two', 2]], 'can convert an object into pairs');
     deepEqual(_.pairs({one: 1, two: 2, length: 3}), [['one', 1], ['two', 2], ['length', 3]], '... even when one of them is "length"');

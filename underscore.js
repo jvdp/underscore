@@ -751,6 +751,14 @@
     return values;
   };
 
+  // Return an array containing only the specified properties.
+  _.valuesAt = function(obj) {
+    var keys = slice.call(arguments, 1);
+    return _.map(keys, function (key) {
+      return _.has(obj, key) ? obj[key] : null;
+    });
+  };
+
   // Convert an object into a list of `[key, value]` pairs.
   _.pairs = function(obj) {
     var pairs = [];
